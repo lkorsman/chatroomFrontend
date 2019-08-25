@@ -1,0 +1,17 @@
+<p>
+  welcome works!
+</p>
+
+<table class="table" style="font-size:10pt;">
+  <thead>
+      <tr>
+          <th>Chats</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let c of chats">
+        <td>{{c.messageID}}</td>
+        <td>{{c.message}}</td>
+      </tr>
+  </tbody>
+</table>

@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Chats</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+      <b>Name</b>
+    </div>
+    <div class="col-md-4">
+      <b>Message</b>
+    </div>
+  </div>
+  <div *ngFor="let message of messages;let i=index">
+    <div *ngIf="i<=9">
+      <div class="row">
+          <div class="col-md-1">
+            {{message.name}}
+          </div>
+          <div class="col-md-4">
+            {{message.message}}
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row mt-2">
+    <div class="col-md-4">
+      <b class="text-left"><br><br>Submit New Message</b>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <form [formGroup]="angForm">
+    <div class="form-group">
+      <label class="col-md-2">Name</label>
+      <input type="text" class="form-control col-md-1" formControlName="name" #name/>
+    </div>
+    <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)" class="alert alert-danger">
+      <div *ngIf="angForm.controls['name'].errors.required">
+        Name is required.
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-2">Message</label>
+      <input type="text" class="form-control col-md-4" formControlName="message" #message/>
+    </div>
+    <div *ngIf="angForm.controls['message'].invalid && (angForm.controls['message'].dirty || angForm.controls['message'].touched)" class="alert alert-danger">
+      <div *ngIf="angForm.controls['message'].errors.required">
+        Message is required.
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <button (click)="addMessage(name.value, message.value)"
+        [disabled]="angForm.pristine || angForm.invalid" 
+        class="btn btn-primary">
+        Send
+      </button>
+    </div>
+  </form>
+</div>
